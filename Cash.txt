@@ -1,0 +1,113 @@
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Mail, Star } from "lucide-react";
+import { motion } from "framer-motion";
+
+export default function Home() {
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-white to-gray-100 text-gray-900 px-6 py-10 space-y-20">
+      {/* ================= HERO SECTION ================= */}
+      <section className="text-center space-y-4 max-w-2xl mx-auto">
+        <motion.h1
+          className="text-4xl md:text-6xl font-bold text-green-800"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          Unlock Your Peak Performance
+        </motion.h1>
+        <p className="text-lg md:text-xl text-gray-600">
+          Science-backed supplements and smart biohacks to help you level up your body and mind.
+        </p>
+        <Button className="text-lg px-6 py-4 rounded-2xl shadow-xl bg-green-600 hover:bg-green-700 text-white">
+          Explore Recommendations
+        </Button>
+      </section>
+
+      {/* ================= TOP PICKS SECTION ================= */}
+      <section className="max-w-5xl mx-auto">
+        <h2 className="text-3xl font-semibold mb-6 text-center text-green-800">Top Picks</h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          {[
+            {
+              name: "AG1 by Athletic Greens",
+              desc: "All-in-one greens powder for energy, gut health, and immunity.",
+              link: "https://athleticgreens.sjv.io/c/1234567/1341234/15368",
+              rating: 5,
+              review: "I've been using AG1 daily and my digestion and energy have never been better."
+            },
+            {
+              name: "MindLab Pro",
+              desc: "Advanced nootropic stack for focus, memory and mental clarity.",
+              link: "https://www.optinutra.com/mind-lab-pro?aff=yourid",
+              rating: 4,
+              review: "MindLab Pro helped me stay sharp during long work hours. Great for productivity!"
+            },
+            {
+              name: "NMN by Primal State",
+              desc: "Support cellular energy and healthy aging.",
+              link: "https://primalstate.de/products/nmn?ref=affiliateid",
+              rating: 4,
+              review: "I feel more energized in the mornings and my recovery time improved significantly."
+            },
+          ].map((product, idx) => (
+            <Card key={idx} className="rounded-2xl shadow-lg bg-white hover:shadow-xl transition-shadow duration-300">
+              <CardContent className="p-6 space-y-4">
+                <h3 className="text-xl font-bold text-green-700">{product.name}</h3>
+                <p className="text-gray-600">{product.desc}</p>
+                <div className="flex items-center gap-1 text-yellow-500">
+                  {[...Array(product.rating)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-yellow-400" />
+                  ))}
+                </div>
+                <p className="text-sm italic text-gray-500">“{product.review}”</p>
+                <a href={product.link} target="_blank" rel="noopener noreferrer">
+                  <Button className="w-full" variant="outline">
+                    Buy Now
+                  </Button>
+                </a>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* ================= BLOG SECTION ================= */}
+      <section className="max-w-4xl mx-auto">
+        <h2 className="text-3xl font-semibold mb-6 text-center text-green-800">Latest Insights</h2>
+        <article className="bg-white p-6 rounded-2xl shadow-md space-y-4">
+          <h3 className="text-2xl font-bold">Why Supplements Aren’t Magic – But Still Matter</h3>
+          <p className="text-gray-700">
+            In a world full of quick fixes, supplements offer real, science-backed tools—not miracle pills. When combined
+            with solid sleep, movement, and nutrition, they can amplify your results. But context matters: a nootropic
+            might improve your focus, but it won’t fix your late-night Netflix binges. The key is synergy—using the right
+            tools at the right time.
+          </p>
+          <p className="text-gray-700">
+            Our goal is to help you cut through the hype and make smart decisions about what goes into your body. That’s why
+            we test, review, and only recommend what we use ourselves. Stay tuned for deep dives, reviews, and tips on how
+            to truly optimize your biology.
+          </p>
+          <Button className="mt-4 bg-green-600 hover:bg-green-700 text-white rounded-xl">
+            Read More Articles
+          </Button>
+        </article>
+      </section>
+
+      {/* ================= NEWSLETTER SIGNUP SECTION ================= */}
+      <section className="max-w-xl mx-auto text-center space-y-4">
+        <h2 className="text-2xl font-semibold text-green-800">
+          Get our Peak Performance Cheat Sheet – for Free!
+        </h2>
+        <div className="flex items-center gap-2 justify-center">
+          <Input type="email" placeholder="Your email" className="max-w-sm rounded-xl" />
+          <Button className="bg-green-600 hover:bg-green-700 text-white">
+            <Mail className="w-4 h-4 mr-2" /> Subscribe
+          </Button>
+        </div>
+        <p className="text-sm text-gray-500">No spam, just science and results.</p>
+      </section>
+    </div>
+  );
+}
